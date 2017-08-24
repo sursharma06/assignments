@@ -424,9 +424,27 @@ function iceCreamPosition(pieTemperature, iceCreamFlavor) {
 //    Return true
 // Otherwise
 //    Return false
-//
+// //if (year is not divisible by 4) then (it is a common year)
+// else if (year is not divisible by 100) then (it is a leap year)
+// else if (year is not divisible by 400) then (it is a common year)
+// else (it is a leap year)
 // See: https://en.wikipedia.org/wiki/Leap_year#Algorithm
-
+function isLeapYear(year) {
+  // if (year % 4 === 0 && year % 100 !== 0) {
+  //   return true;
+  // } else {
+  //   return false;
+  // }
+  if (year % 4 !== 0) {
+    return false;
+  } else if (year % 100 !== 0) {
+    return true;
+  } else if (year % 400 !== 0) {
+    return false;
+  }else {
+    return true;
+  }
+}
 
 
 // Define a function named shout that takes one argument
@@ -448,7 +466,9 @@ function shout(message) {
 // 'shhh... '. For exaple, given 'GOLF TIME', then return "shhh... golf time"
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
-
+function whisper(message) {
+  return 'shhh... ' + message.toLowerCase();
+}
 
 
 // Define a function named stopAt that takes two arguments
@@ -465,7 +485,11 @@ function shout(message) {
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
-
+function stopAt(source, stop) {
+  var ind = source.indexOf(stop);
+  var sliced = source.slice(0, ind - 1);
+  return sliced;
+}
 
 
 // Define a function named capitalize that takes one argument
@@ -475,7 +499,9 @@ function shout(message) {
 // 'oh, you', then return 'Oh, you'.
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring
-
+function capitalize(message) {
+  return message[0].toUpperCase() + message.slice(1);
+}
 
 
 // Define a function named leftPad5 that takes one argument
@@ -485,7 +511,17 @@ function shout(message) {
 //    Return the argument but prefixed with spaces until it's 5 characters long
 // If the argument's length is 5 or more characters
 //    Return the argument
+function leftPad5(word) {
 
+  var array = word.split('');
+  for (var i = 0; i < array.length; i++) {
+    if (array.length < 5) {
+      array.unshift(' ');
+    }
+  }
+
+  return array.join('');
+}
 
 
 // Define a function named superPicky that takes one argument
@@ -497,7 +533,13 @@ function shout(message) {
 //    Return 'I wanted a string, but all I got was a stinking TYPE'
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
-
+function superPicky(value) {
+  if (typeof value === 'string') {
+    return 'Thanks! Got it.';
+  } else {
+    return 'I wanted a string, but all I got was a stinking ' + typeof value;
+  }
+}
 
 
 // Define a function named calculateTaxRate that takes two arguments
@@ -510,3 +552,24 @@ function shout(message) {
 //    Return a string that says 'Better call an accountant'
 // Otherwise
 //    Return the correct tax rate as a string using the table from http://www.efile.com/tax-service/tax-calculator/tax-brackets/
+function calculateTaxRate(salary, status) {
+  if (salary > 74900) {
+    return 'Better call an accountant';
+  }
+
+  if (status === 'single') {
+    if (salary < 9226) {
+      var taxRate = '10%';
+    } else {
+      taxRate = '15%';
+    }
+  } else if (status === 'joint') {
+    if (salary < 18451) {
+      taxRate = '10%';
+    } else {
+      taxRate = '15%';
+    }
+  }
+
+  return (taxRate) ? taxRate : 'Better call an accountant';
+}
