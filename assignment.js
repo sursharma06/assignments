@@ -436,7 +436,9 @@ function iceCreamPosition(pieTemperature, iceCreamFlavor) {
 // 'Shut the front door', then return 'SHUT THE FRONT DOOR'
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
-
+function shout(message) {
+  return message.toUpperCase();
+}
 
 
 // Define a function named whisper that takes one argument
